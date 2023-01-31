@@ -1,6 +1,6 @@
 # Recog
 
-![Logo](assets/logo.svg)
+<img src="assets/logo.svg" alt="Recog Logo" width="128" height="128">
 
 Building blocks for authenticating through different strategies
 
