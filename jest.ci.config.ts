@@ -11,7 +11,6 @@ const {
   moduleFileExtensions,
   transform,
   collectCoverageFrom,
-  coverageDirectory,
   testEnvironment,
 } = config;
 
@@ -19,8 +18,10 @@ const configForCI: Config = {
   moduleFileExtensions,
   transform,
   collectCoverageFrom,
-  coverageDirectory,
   testEnvironment,
+  // The rootDir must be specified since coverageDirectory, collectCoverageFrom and roots are relative to it
+  coverageDirectory: 'coverage',
+  rootDir: '',
   roots: [config.rootDir, configForE2E.rootDir],
   testRegex: [...testRegexesIn(config), ...testRegexesIn(configForE2E)],
 };
