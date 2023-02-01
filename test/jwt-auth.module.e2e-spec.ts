@@ -44,16 +44,21 @@ describe('JwtAuthModule (e2e)', () => {
 
   describe('/profile (GET)', () => {
     it('should throw an Unauthorized (HTTP 401) error when jwt is absent', () => {
-      return request(app.getHttpServer()).get('/profile').expect(401).expect({
-        statusCode: 401,
-        message: 'Unauthorized',
-      })
+      return request(app.getHttpServer())
+        .get('/profile')
+        .expect('Content-Type', 'application/json; charset=utf-8')
+        .expect(401)
+        .expect({
+          statusCode: 401,
+          message: 'Unauthorized',
+        })
     })
 
     it('should throw an Unauthorized (HTTP 401) error when jwt is invalid', () => {
       return request(app.getHttpServer())
         .get('/profile')
         .auth('invalidJwt', { type: 'bearer' })
+        .expect('Content-Type', 'application/json; charset=utf-8')
         .expect(401)
         .expect({
           statusCode: 401,
@@ -67,6 +72,7 @@ describe('JwtAuthModule (e2e)', () => {
       return request(app.getHttpServer())
         .get('/profile')
         .auth(validJwt, { type: 'bearer' })
+        .expect('Content-Type', 'text/html; charset=utf-8')
         .expect(200)
         .expect(`Profile of ${payload.name}, identified by 1`)
     })
