@@ -1,5 +1,5 @@
 import { Test } from '@nestjs/testing'
-import { JwtAuthModule } from './jwt-auth.module'
+import { JwtAuthModule } from '../jwt-auth.module'
 import { ExtractJwt } from 'passport-jwt'
 
 describe('JwtAuthModule', () => {

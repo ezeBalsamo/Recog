@@ -1,4 +1,4 @@
-import { JwtAuthStrategy } from './jwt-auth.strategy'
+import { JwtAuthStrategy } from '../jwt-auth.strategy'
 import { ExtractJwt } from 'passport-jwt'
 
 describe('JwtAuthStrategy', () => {

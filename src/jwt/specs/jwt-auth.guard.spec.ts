@@ -1,7 +1,7 @@
-import { JwtAuthGuard } from './jwt-auth.guard'
+import { JwtAuthGuard } from '../jwt-auth.guard'
 import { ExecutionContext, UnauthorizedException } from '@nestjs/common'
 import { createMock } from '@golevelup/ts-jest'
-import { JwtAuthStrategy } from './jwt-auth.strategy'
+import { JwtAuthStrategy } from '../jwt-auth.strategy'
 import { sign } from 'jsonwebtoken'
 import { ExtractJwt } from 'passport-jwt'
 
