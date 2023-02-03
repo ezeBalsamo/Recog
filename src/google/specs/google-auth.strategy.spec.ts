@@ -7,6 +7,8 @@ describe('GoogleAuthStrategy', () => {
       strategyOptions: {
         clientID: 'id1234',
         clientSecret: 'Matt Murdock is Daredevil',
+        callbackURL: 'http://localhost:3000/auth/google/callback',
+        scope: ['email', 'profile'],
       },
       authService: new MockGoogleAuthService(),
     })
