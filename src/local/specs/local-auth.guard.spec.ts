@@ -30,4 +30,17 @@ describe('LocalAuthGuard', () => {
       new UnauthorizedException(),
     )
   })
+
+  it('should throw Unauthorized error when username field is undefined', async () => {
+    injectStrategy()
+    const context = createMock<ExecutionContext>()
+    context.switchToHttp().getRequest.mockReturnValue({
+      body: {
+        password: 'iAmSuperman',
+      },
+    })
+    await expect(localAuthGuard.canActivate(context)).rejects.toEqual(
+      new UnauthorizedException(),
+    )
+  })
 })
