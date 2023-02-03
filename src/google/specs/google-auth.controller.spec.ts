@@ -8,6 +8,8 @@ describe('GoogleAuthController', () => {
     })
     const user = { name: 'Matt Murdock', email: 'mmurdock@gmail.com' }
     const expected = { ...user, token: '123abc' }
+
+    await controller.login() // We 'mock' a successful login
     await expect(controller.redirect({ user })).resolves.toEqual(expected)
   })
 })
