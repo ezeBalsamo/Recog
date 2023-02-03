@@ -20,4 +20,24 @@ describe('GoogleAuthModule', () => {
     const app = testingModule.createNestApplication()
     await app.init()
   })
+
+  it('can be registered asynchronously', async () => {
+    const testingModule = await Test.createTestingModule({
+      imports: [
+        GoogleAuthModule.registerAsync({
+          useFactory: () => ({
+            strategyOptions: {
+              clientID: 'id1234',
+              clientSecret: 'Matt Murdock is Daredevil',
+              callbackURL: 'http://localhost:3000/auth/google/callback',
+              scope: ['email', 'profile'],
+            },
+            authService: new MockGoogleAuthService(),
+          }),
+        }),
+      ],
+    }).compile()
+    const app = testingModule.createNestApplication()
+    await app.init()
+  })
 })
