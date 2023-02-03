@@ -8,4 +8,8 @@ export class MockGoogleAuthService implements GoogleAuthServiceBehaviour {
   ): Promise<any> {
     return Promise.resolve({ ...profile, id: '1' })
   }
+
+  handleRedirectionFor(user: any): Promise<any> {
+    return Promise.resolve({ ...user, token: '123abc' })
+  }
 }
