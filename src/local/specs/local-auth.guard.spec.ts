@@ -68,4 +68,16 @@ describe('LocalAuthGuard', () => {
     })
     await expect(localAuthGuard.canActivate(context)).resolves.toBeTruthy()
   })
+
+  it('succeed when username and password fields are defined in the query', async () => {
+    injectStrategy()
+    const context = createMock<ExecutionContext>()
+    context.switchToHttp().getRequest.mockReturnValue({
+      query: {
+        username: 'Superman',
+        password: 'iAmClarkKent',
+      },
+    })
+    await expect(localAuthGuard.canActivate(context)).resolves.toBeTruthy()
+  })
 })
