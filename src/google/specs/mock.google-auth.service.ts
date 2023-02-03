@@ -1,12 +1,17 @@
 import { GoogleAuthServiceBehaviour } from '../google-auth.interface'
+import { Profile } from 'passport-google-oauth20'
 
 export class MockGoogleAuthService implements GoogleAuthServiceBehaviour {
   handleLoginFor(
     accessToken: string,
     refreshToken: string,
-    profile: object,
+    profile: Profile,
   ): Promise<any> {
-    return Promise.resolve({ ...profile, id: '1' })
+    return Promise.resolve({
+      id: profile.id,
+      displayName: profile.displayName,
+      superhero: true,
+    })
   }
 
   handleRedirectionFor(user: any): Promise<any> {

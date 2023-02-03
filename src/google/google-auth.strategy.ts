@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common'
 import { PassportStrategy } from '@nestjs/passport'
-import { Strategy } from 'passport-google-oauth20'
+import { Profile, Strategy } from 'passport-google-oauth20'
 import {
   GoogleAuthModuleOptions,
   GoogleAuthServiceBehaviour,
@@ -22,7 +22,7 @@ export class GoogleAuthStrategy extends PassportStrategy(Strategy) {
   async validate(
     accessToken: string,
     refreshToken: string,
-    profile: object,
+    profile: Profile,
   ): Promise<any> {
     return this.authService.handleLoginFor(accessToken, refreshToken, profile)
   }

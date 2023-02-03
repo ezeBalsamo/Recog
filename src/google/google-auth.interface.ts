@@ -1,10 +1,10 @@
-import { StrategyOptions } from 'passport-google-oauth20'
+import { Profile, StrategyOptions } from 'passport-google-oauth20'
 
 export interface GoogleAuthServiceBehaviour {
   handleLoginFor(
     accessToken: string,
     refreshToken: string,
-    profile: object,
+    profile: Profile,
   ): Promise<any>
 
   handleRedirectionFor(user: any): Promise<any>
