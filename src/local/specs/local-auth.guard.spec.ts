@@ -1,6 +1,13 @@
 import { LocalAuthGuard } from '../local-auth.guard'
-import { ExecutionContext } from '@nestjs/common'
+import { ExecutionContext, UnauthorizedException } from '@nestjs/common'
 import { createMock } from '@golevelup/ts-jest'
+import { LocalAuthStrategy } from '../local-auth.strategy'
+
+const injectStrategy = () =>
+  new LocalAuthStrategy({
+    handleLoginFor: (username, password) =>
+      Promise.resolve({ username, password, id: '1' }),
+  })
 
 describe('LocalAuthGuard', () => {
   let localAuthGuard: LocalAuthGuard
@@ -13,6 +20,14 @@ describe('LocalAuthGuard', () => {
     const context = createMock<ExecutionContext>()
     await expect(localAuthGuard.canActivate(context)).rejects.toThrow(
       'Unknown authentication strategy "local"',
+    )
+  })
+
+  it('should throw and Unauthorized error when username field and password field are undefined', async () => {
+    injectStrategy()
+    const context = createMock<ExecutionContext>()
+    await expect(localAuthGuard.canActivate(context)).rejects.toEqual(
+      new UnauthorizedException(),
     )
   })
 })
