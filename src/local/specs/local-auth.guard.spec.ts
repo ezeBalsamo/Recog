@@ -18,6 +18,15 @@ const injectCustomizedUsernameStrategy = () =>
       Promise.resolve({ username, password, id: '1' }),
   })
 
+const injectCustomizedPasswordStrategy = () =>
+  new LocalAuthStrategy({
+    strategyOptions: {
+      passwordField: 'pass',
+    },
+    handleLoginFor: (username, password) =>
+      Promise.resolve({ username, password, id: '1' }),
+  })
+
 describe('LocalAuthGuard', () => {
   let localAuthGuard: LocalAuthGuard
 
@@ -97,6 +106,18 @@ describe('LocalAuthGuard', () => {
       body: {
         mail: 'clark_kent@dailybugle.com',
         password: 'iAmSuperman',
+      },
+    })
+    await expect(localAuthGuard.canActivate(context)).resolves.toBeTruthy()
+  })
+
+  it('should succeed when password field is customized and defined', async () => {
+    injectCustomizedPasswordStrategy()
+    const context = createMock<ExecutionContext>()
+    context.switchToHttp().getRequest.mockReturnValue({
+      body: {
+        username: 'Clark Kent',
+        pass: 'iAmSuperman',
       },
     })
     await expect(localAuthGuard.canActivate(context)).resolves.toBeTruthy()
