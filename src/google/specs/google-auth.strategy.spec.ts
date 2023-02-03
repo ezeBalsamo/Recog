@@ -1,4 +1,5 @@
 import { GoogleAuthStrategy } from '../google-auth.strategy'
+import { MockGoogleAuthService } from './mock.google-auth.service'
 
 describe('GoogleAuthStrategy', () => {
   it('should validate provided credentials', async () => {
@@ -7,8 +8,7 @@ describe('GoogleAuthStrategy', () => {
         clientID: 'id1234',
         clientSecret: 'Matt Murdock is Daredevil',
       },
-      handleLoginFor: (accessToken, refreshToken, profile) =>
-        Promise.resolve({ ...profile, id: '1' }),
+      authService: new MockGoogleAuthService(),
     })
 
     const accessToken = 'abc'

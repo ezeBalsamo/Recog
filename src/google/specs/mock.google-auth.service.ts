@@ -1,4 +1,6 @@
-export class MockGoogleAuthService {
+import { GoogleAuthServiceBehaviour } from '../google-auth.interface'
+
+export class MockGoogleAuthService implements GoogleAuthServiceBehaviour {
   handleLoginFor(
     accessToken: string,
     refreshToken: string,
