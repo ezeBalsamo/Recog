@@ -1,16 +1,18 @@
 import { LocalAuthStrategy } from '../local-auth.strategy'
 
 describe('LocalAuthStrategy', () => {
-  it('should succeed when provided credentials are valid', async () => {
+  it('should validate provided credentials', async () => {
     const strategy = new LocalAuthStrategy({
-      handleLoginFor: user => Promise.resolve({ ...user, id: '1' }),
+      handleLoginFor: (username, password) =>
+        Promise.resolve({ username, password, id: '1' }),
     })
 
-    const user = {
-      username: 'Clark Kent',
-      password: 'iAmSuperman',
-    }
-    const expectedUser = { ...user, id: '1' }
-    await expect(strategy.validate(user)).resolves.toEqual(expectedUser)
+    const username = 'Clark Kent'
+    const password = 'iAmSuperman'
+
+    const expectedUser = { username, password, id: '1' }
+    await expect(strategy.validate(username, password)).resolves.toEqual(
+      expectedUser,
+    )
   })
 })
