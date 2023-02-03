@@ -57,7 +57,7 @@ describe('LocalAuthGuard', () => {
     )
   })
 
-  it('succeed when username and password fields are defined in the body', async () => {
+  it('should succeed when username and password fields are defined in the body', async () => {
     injectStrategy()
     const context = createMock<ExecutionContext>()
     context.switchToHttp().getRequest.mockReturnValue({
@@ -69,7 +69,7 @@ describe('LocalAuthGuard', () => {
     await expect(localAuthGuard.canActivate(context)).resolves.toBeTruthy()
   })
 
-  it('succeed when username and password fields are defined in the query', async () => {
+  it('should succeed when username and password fields are defined in the query', async () => {
     injectStrategy()
     const context = createMock<ExecutionContext>()
     context.switchToHttp().getRequest.mockReturnValue({
