@@ -1,3 +1,3 @@
 export interface LocalAuthModuleOptions {
-  handleLoginFor: (user) => Promise<unknown>
+  handleLoginFor: (username: string, password: string) => Promise<unknown>
 }
