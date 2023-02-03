@@ -56,4 +56,16 @@ describe('LocalAuthGuard', () => {
       new UnauthorizedException(),
     )
   })
+
+  it('succeed when username and password fields are defined in the body', async () => {
+    injectStrategy()
+    const context = createMock<ExecutionContext>()
+    context.switchToHttp().getRequest.mockReturnValue({
+      body: {
+        username: 'Clark Kent',
+        password: 'iAmSuperman',
+      },
+    })
+    await expect(localAuthGuard.canActivate(context)).resolves.toBeTruthy()
+  })
 })
