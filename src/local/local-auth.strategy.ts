@@ -11,7 +11,7 @@ export class LocalAuthStrategy extends PassportStrategy(Strategy) {
   ) => Promise<unknown>
 
   constructor(private readonly options: LocalAuthModuleOptions) {
-    super()
+    super(options.strategyOptions || {})
     this.handleLoginFor = options.handleLoginFor
   }
 
