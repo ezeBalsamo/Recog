@@ -99,7 +99,7 @@ describe('LocalAuthGuard', () => {
     await expect(localAuthGuard.canActivate(context)).resolves.toBeTruthy()
   })
 
-  it('should succeed when username field is customized and defined', async () => {
+  it('should succeed when username field is customized', async () => {
     injectCustomizedUsernameStrategy()
     const context = createMock<ExecutionContext>()
     context.switchToHttp().getRequest.mockReturnValue({
@@ -111,7 +111,7 @@ describe('LocalAuthGuard', () => {
     await expect(localAuthGuard.canActivate(context)).resolves.toBeTruthy()
   })
 
-  it('should succeed when password field is customized and defined', async () => {
+  it('should succeed when password field is customized', async () => {
     injectCustomizedPasswordStrategy()
     const context = createMock<ExecutionContext>()
     context.switchToHttp().getRequest.mockReturnValue({
