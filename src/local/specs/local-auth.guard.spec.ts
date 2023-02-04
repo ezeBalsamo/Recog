@@ -3,10 +3,12 @@ import { ExecutionContext, UnauthorizedException } from '@nestjs/common'
 import { createMock } from '@golevelup/ts-jest'
 import { LocalAuthStrategy } from '../local-auth.strategy'
 
+const handleLoginFor = (username, password) =>
+  Promise.resolve({ username, password, id: '1' })
+
 const injectStrategy = () =>
   new LocalAuthStrategy({
-    handleLoginFor: (username, password) =>
-      Promise.resolve({ username, password, id: '1' }),
+    handleLoginFor: handleLoginFor,
   })
 
 const injectCustomizedUsernameStrategy = () =>
@@ -14,8 +16,7 @@ const injectCustomizedUsernameStrategy = () =>
     strategyOptions: {
       usernameField: 'mail',
     },
-    handleLoginFor: (username, password) =>
-      Promise.resolve({ username, password, id: '1' }),
+    handleLoginFor: handleLoginFor,
   })
 
 const injectCustomizedPasswordStrategy = () =>
@@ -23,8 +24,7 @@ const injectCustomizedPasswordStrategy = () =>
     strategyOptions: {
       passwordField: 'pass',
     },
-    handleLoginFor: (username, password) =>
-      Promise.resolve({ username, password, id: '1' }),
+    handleLoginFor: handleLoginFor,
   })
 
 describe('LocalAuthGuard', () => {
