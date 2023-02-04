@@ -41,7 +41,7 @@ describe('LocalAuthGuard', () => {
     )
   })
 
-  it('should throw and Unauthorized error when username field and password field are undefined', async () => {
+  it('should throw an Unauthorized (HTTP 401) error when username and password fields are undefined', async () => {
     injectStrategy()
     const context = createMock<ExecutionContext>()
     await expect(localAuthGuard.canActivate(context)).rejects.toEqual(
