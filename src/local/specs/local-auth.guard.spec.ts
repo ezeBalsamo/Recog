@@ -49,7 +49,7 @@ describe('LocalAuthGuard', () => {
     )
   })
 
-  it('should throw Unauthorized error when username field is undefined', async () => {
+  it('should throw Unauthorized error when username field is absent', async () => {
     injectStrategy()
     const context = createMock<ExecutionContext>()
     context.switchToHttp().getRequest.mockReturnValue({
@@ -62,7 +62,7 @@ describe('LocalAuthGuard', () => {
     )
   })
 
-  it('should throw Unauthorized error when password field is undefined', async () => {
+  it('should throw Unauthorized error when password field is absent', async () => {
     injectStrategy()
     const context = createMock<ExecutionContext>()
     context.switchToHttp().getRequest.mockReturnValue({
