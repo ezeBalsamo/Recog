@@ -1,10 +1,10 @@
 import { LocalAuthStrategy } from '../local-auth.strategy'
+import { MockLocalAuthService } from './mock-local-auth.service'
 
 describe('LocalAuthStrategy', () => {
   it('should validate provided credentials', async () => {
     const strategy = new LocalAuthStrategy({
-      handleLoginFor: (username, password) =>
-        Promise.resolve({ username, password, id: '1' }),
+      authService: new MockLocalAuthService(),
     })
 
     const username = 'Clark Kent'
