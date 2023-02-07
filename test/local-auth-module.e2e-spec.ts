@@ -32,6 +32,18 @@ describe('LocalAuthModule (e2e)', () => {
         })
     })
 
+    it('should throw an Unauthorized (HTTP 401) error when username field is absent', () => {
+      return request(app.getHttpServer())
+        .post('/login')
+        .send({ password: 'iAmBatman' })
+        .expect('Content-Type', 'application/json; charset=utf-8')
+        .expect(401)
+        .expect({
+          statusCode: 401,
+          message: 'Unauthorized',
+        })
+    })
+
     it('should succeed when the credentials are valid', () => {
       const user = { username: 'Bruce Wayne', password: 'iAmBatman' }
       return request(app.getHttpServer())
