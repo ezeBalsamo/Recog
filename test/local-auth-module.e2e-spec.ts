@@ -20,6 +20,18 @@ describe('LocalAuthModule (e2e)', () => {
   })
 
   describe('/login (POST)', () => {
+    it('should throw an Unauthorized (HTTP 401) error when username and password fields are undefined', () => {
+      return request(app.getHttpServer())
+        .post('/login')
+        .send({})
+        .expect('Content-Type', 'application/json; charset=utf-8')
+        .expect(401)
+        .expect({
+          statusCode: 401,
+          message: 'Unauthorized',
+        })
+    })
+
     it('should throw an Unauthorized (HTTP 401) error when password field is absent', () => {
       return request(app.getHttpServer())
         .post('/login')
