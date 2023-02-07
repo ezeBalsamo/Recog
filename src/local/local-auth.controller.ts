@@ -1,14 +1,18 @@
-import { Controller, Request, UseGuards } from '@nestjs/common'
+import { Controller, Inject, Request, UseGuards } from '@nestjs/common'
 import { LocalAuthGuard } from './local-auth.guard'
 import {
   LocalAuthModuleOptions,
   LocalAuthServiceBehaviour,
 } from './local-auth.interface'
+import { MODULE_OPTIONS_TOKEN } from './local-auth.module-definition'
 
 @Controller()
 export class LocalAuthController {
   private authService: LocalAuthServiceBehaviour
-  constructor(private readonly options: LocalAuthModuleOptions) {
+  constructor(
+    @Inject(MODULE_OPTIONS_TOKEN)
+    private readonly options: LocalAuthModuleOptions,
+  ) {
     this.authService = options.authService
   }
 
