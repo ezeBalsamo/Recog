@@ -2,10 +2,8 @@ import { Test } from '@nestjs/testing'
 import { MockGoogleAuthService } from './mock.google-auth.service'
 import { GoogleAuthModule } from '../google-auth.module'
 import * as config from 'recog-config'
-import {
-  RecogConfig,
-  RecogGoogleConfigAuthServiceDefinition,
-} from 'recog-config.interface'
+import { RecogConfig } from 'src/recog-config.interface'
+import { RecogGoogleConfigAuthServiceDefinition } from '../google-config.interface'
 
 jest.mock('recog-config', () => {
   return {
