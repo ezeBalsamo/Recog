@@ -3,14 +3,11 @@ import { MockGoogleAuthService } from './mock.google-auth.service'
 
 describe('GoogleAuthStrategy', () => {
   it('should validate provided credentials', async () => {
-    const strategy = new GoogleAuthStrategy({
-      strategyOptions: {
-        clientID: 'id1234',
-        clientSecret: 'Matt Murdock is Daredevil',
-        callbackURL: 'http://localhost:3000/auth/google/callback',
-        scope: ['email', 'profile'],
-      },
-      authService: new MockGoogleAuthService(),
+    const strategy = new GoogleAuthStrategy(new MockGoogleAuthService(), {
+      clientID: 'id1234',
+      clientSecret: 'Matt Murdock is Daredevil',
+      callbackURL: 'http://localhost:3000/auth/google/callback',
+      scope: ['email', 'profile'],
     })
 
     const accessToken = 'abc'
