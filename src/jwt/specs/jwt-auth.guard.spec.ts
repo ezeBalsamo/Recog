@@ -4,15 +4,16 @@ import { createMock } from '@golevelup/ts-jest'
 import { JwtAuthStrategy } from '../jwt-auth.strategy'
 import { sign } from 'jsonwebtoken'
 import { ExtractJwt } from 'passport-jwt'
+import MockJwtAuthService from './mock.jwt-auth.service'
 
 const injectStrategySecuredBy = (secret: string) =>
-  new JwtAuthStrategy({
-    strategyOptions: {
+  new JwtAuthStrategy(
+    {
       secretOrKey: secret,
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     },
-    handlePayload: payload => Promise.resolve(payload),
-  })
+    new MockJwtAuthService(),
+  )
 const injectStrategy = () => injectStrategySecuredBy('secret')
 
 describe('JwtAuthGuard', () => {
