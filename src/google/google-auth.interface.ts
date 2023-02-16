@@ -10,12 +10,7 @@ export interface GoogleAuthServiceBehaviour {
   handleRedirectionFor(user: any): Promise<any>
 }
 
-interface GoogleAuthStrategyOptions extends StrategyOptions {
+export interface GoogleAuthStrategyOptions extends StrategyOptions {
   callbackURL: string
   scope: string | string[]
-}
-
-export interface GoogleAuthModuleOptions {
-  strategyOptions?: GoogleAuthStrategyOptions
-  authService: GoogleAuthServiceBehaviour
 }
