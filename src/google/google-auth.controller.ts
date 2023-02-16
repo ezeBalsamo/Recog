@@ -1,21 +1,14 @@
 import { Controller, Inject, Request, UseGuards } from '@nestjs/common'
-import {
-  GoogleAuthModuleOptions,
-  GoogleAuthServiceBehaviour,
-} from './google-auth.interface'
-import { MODULE_OPTIONS_TOKEN } from './google-auth.module-definition'
+import { GoogleAuthServiceBehaviour } from './google-auth.interface'
 import { GoogleAuthGuard } from './google-auth.guard'
+import { GOOGLE_AUTH_SERVICE_CLASS } from './google-auth.constants'
 
 @Controller()
 export class GoogleAuthController {
-  private authService: GoogleAuthServiceBehaviour
-
   constructor(
-    @Inject(MODULE_OPTIONS_TOKEN)
-    private readonly options: GoogleAuthModuleOptions,
-  ) {
-    this.authService = options.authService
-  }
+    @Inject(GOOGLE_AUTH_SERVICE_CLASS)
+    private readonly authService: GoogleAuthServiceBehaviour,
+  ) {}
 
   @UseGuards(GoogleAuthGuard)
   // eslint-disable-next-line @typescript-eslint/no-empty-function
