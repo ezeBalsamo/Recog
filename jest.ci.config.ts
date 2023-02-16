@@ -1,18 +1,18 @@
-import { Config } from 'jest';
-import config from './jest.config';
-import configForE2E from './jest.e2e.config';
+import { Config } from 'jest'
+import config from './jest.config'
+import configForE2E from './jest.e2e.config'
 
 const testRegexesIn = (aConfig: Config): string[] =>
   typeof aConfig.testRegex === 'string'
     ? [aConfig.testRegex]
-    : aConfig.testRegex;
+    : aConfig.testRegex
 
 const {
   moduleFileExtensions,
   transform,
   collectCoverageFrom,
   testEnvironment,
-} = config;
+} = config
 
 const configForCI: Config = {
   moduleFileExtensions,
@@ -21,9 +21,10 @@ const configForCI: Config = {
   testEnvironment,
   // The rootDir must be specified since coverageDirectory, collectCoverageFrom and roots are relative to it
   coverageDirectory: 'coverage',
-  rootDir: '',
+  rootDir: '.',
+  modulePaths: ['.'],
   roots: [config.rootDir, configForE2E.rootDir],
   testRegex: [...testRegexesIn(config), ...testRegexesIn(configForE2E)],
-};
+}
 
-export default configForCI;
+export default configForCI
