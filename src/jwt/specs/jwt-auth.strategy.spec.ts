@@ -1,15 +1,16 @@
 import { JwtAuthStrategy } from '../jwt-auth.strategy'
 import { ExtractJwt } from 'passport-jwt'
+import MockJwtAuthService from './mock.jwt-auth.service'
 
 describe('JwtAuthStrategy', () => {
   it('should handle validated payload', async () => {
-    const strategy = new JwtAuthStrategy({
-      strategyOptions: {
+    const strategy = new JwtAuthStrategy(
+      {
         secretOrKey: 'Clark Kent is Superman',
         jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       },
-      handlePayload: payload => Promise.resolve({ ...payload, id: '1' }),
-    })
+      new MockJwtAuthService(),
+    )
 
     const payload = { name: 'Lex Luthor' }
     const expectedPayload = { ...payload, id: '1' }

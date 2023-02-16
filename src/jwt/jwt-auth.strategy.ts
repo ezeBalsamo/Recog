@@ -1,21 +1,20 @@
 import { Inject, Injectable } from '@nestjs/common'
 import { PassportStrategy } from '@nestjs/passport'
-import { Strategy } from 'passport-jwt'
-import { MODULE_OPTIONS_TOKEN } from './jwt-auth.module-definition'
-import { JwtAuthModuleOptions } from './jwt-auth.interface'
+import { Strategy, StrategyOptions } from 'passport-jwt'
+import { JWT_STRATEGY_OPTIONS } from './jwt-auth.constants'
+import { JwtAuthService } from './jwt-auth.service'
 
 @Injectable()
 export class JwtAuthStrategy extends PassportStrategy(Strategy) {
-  private readonly handlePayload: (payload: unknown) => Promise<unknown>
   constructor(
-    @Inject(MODULE_OPTIONS_TOKEN)
-    private readonly options: JwtAuthModuleOptions,
+    @Inject(JWT_STRATEGY_OPTIONS)
+    private readonly options: StrategyOptions,
+    private readonly authService: JwtAuthService,
   ) {
-    super(options.strategyOptions)
-    this.handlePayload = options.handlePayload
+    super(options)
   }
 
-  async validate(payload: unknown): Promise<unknown> {
-    return this.handlePayload(payload)
+  async validate(payload: any): Promise<any> {
+    return this.authService.handlePayload(payload)
   }
 }
