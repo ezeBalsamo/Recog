@@ -5,15 +5,17 @@ import {
   GoogleAuthServiceBehaviour,
   GoogleAuthStrategyOptions,
 } from './google-auth.interface'
-import { MODULE_OPTIONS_TOKEN } from './google-auth.module-definition'
-import { GOOGLE_AUTH_SERVICE } from './google-auth.constants'
+import {
+  GOOGLE_AUTH_SERVICE,
+  GOOGLE_AUTH_STRATEGY_OPTIONS,
+} from './google-auth.constants'
 
 @Injectable()
 export class GoogleAuthStrategy extends PassportStrategy(Strategy) {
   constructor(
     @Inject(GOOGLE_AUTH_SERVICE)
     private readonly authService: GoogleAuthServiceBehaviour,
-    @Inject(MODULE_OPTIONS_TOKEN)
+    @Inject(GOOGLE_AUTH_STRATEGY_OPTIONS)
     private readonly options: GoogleAuthStrategyOptions,
   ) {
     super(options)
