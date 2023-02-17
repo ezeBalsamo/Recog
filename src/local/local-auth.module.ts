@@ -25,7 +25,7 @@ export class LocalAuthModule {
         },
         {
           provide: LOCAL_AUTH_STRATEGY_OPTIONS,
-          useValue: options.strategyOptions,
+          useValue: options.strategyOptions || {},
         },
       ],
       controllers: [LocalAuthController],

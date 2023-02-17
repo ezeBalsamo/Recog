@@ -4,8 +4,7 @@ import { createMock } from '@golevelup/ts-jest'
 import { LocalAuthStrategy } from '../local-auth.strategy'
 import { MockLocalAuthService } from './mock-local-auth.service'
 
-const injectStrategy = () =>
-  new LocalAuthStrategy(new MockLocalAuthService(), {})
+const injectStrategy = () => new LocalAuthStrategy(new MockLocalAuthService())
 
 const injectCustomizedUsernameStrategy = () =>
   new LocalAuthStrategy(new MockLocalAuthService(), {

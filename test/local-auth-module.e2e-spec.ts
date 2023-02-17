@@ -11,7 +11,6 @@ describe('LocalAuthModule (e2e)', () => {
     const testingModule = await Test.createTestingModule({
       imports: [
         LocalAuthModule.register({
-          strategyOptions: {},
           authServiceDefinition: {
             class: MockLocalAuthService,
           },

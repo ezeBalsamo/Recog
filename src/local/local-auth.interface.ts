@@ -16,6 +16,6 @@ export interface LocalAuthServiceDefinition {
 }
 
 export interface LocalAuthModuleOptions {
-  strategyOptions: LocalAuthStrategyOptions
+  strategyOptions?: LocalAuthStrategyOptions
   authServiceDefinition: LocalAuthServiceDefinition
 }

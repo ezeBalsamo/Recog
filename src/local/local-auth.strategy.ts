@@ -16,7 +16,7 @@ export class LocalAuthStrategy extends PassportStrategy(Strategy) {
     @Inject(LOCAL_AUTH_SERVICE)
     private readonly authService: LocalAuthServiceBehaviour,
     @Inject(LOCAL_AUTH_STRATEGY_OPTIONS)
-    private readonly options: LocalAuthStrategyOptions,
+    private readonly options: LocalAuthStrategyOptions = {},
   ) {
     super(options)
   }
