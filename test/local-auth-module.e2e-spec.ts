@@ -11,7 +11,10 @@ describe('LocalAuthModule (e2e)', () => {
     const testingModule = await Test.createTestingModule({
       imports: [
         LocalAuthModule.register({
-          authService: new MockLocalAuthService(),
+          strategyOptions: {},
+          authServiceDefinition: {
+            class: MockLocalAuthService,
+          },
         }),
       ],
     }).compile()
@@ -19,10 +22,10 @@ describe('LocalAuthModule (e2e)', () => {
     await app.init()
   })
 
-  describe('/login (POST)', () => {
+  describe('/auth/local (POST)', () => {
     it('should throw an Unauthorized (HTTP 401) error when username and password fields are undefined', () => {
       return request(app.getHttpServer())
-        .post('/login')
+        .post('/auth/local/')
         .send({})
         .expect('Content-Type', 'application/json; charset=utf-8')
         .expect(401)
@@ -34,7 +37,7 @@ describe('LocalAuthModule (e2e)', () => {
 
     it('should throw an Unauthorized (HTTP 401) error when password field is absent', () => {
       return request(app.getHttpServer())
-        .post('/login')
+        .post('/auth/local/')
         .send({ username: 'Bruce Wayne' })
         .expect('Content-Type', 'application/json; charset=utf-8')
         .expect(401)
@@ -46,7 +49,7 @@ describe('LocalAuthModule (e2e)', () => {
 
     it('should throw an Unauthorized (HTTP 401) error when username field is absent', () => {
       return request(app.getHttpServer())
-        .post('/login')
+        .post('/auth/local/')
         .send({ password: 'iAmBatman' })
         .expect('Content-Type', 'application/json; charset=utf-8')
         .expect(401)
@@ -59,7 +62,7 @@ describe('LocalAuthModule (e2e)', () => {
     it('should succeed when the credentials are valid', () => {
       const user = { username: 'Bruce Wayne', password: 'iAmBatman' }
       return request(app.getHttpServer())
-        .post('/login')
+        .post('/auth/local/')
         .send(user)
         .expect('Content-Type', 'application/json; charset=utf-8')
         .expect(201)

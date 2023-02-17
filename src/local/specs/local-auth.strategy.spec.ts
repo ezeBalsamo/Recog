@@ -3,9 +3,7 @@ import { MockLocalAuthService } from './mock-local-auth.service'
 
 describe('LocalAuthStrategy', () => {
   it('should validate provided credentials', async () => {
-    const strategy = new LocalAuthStrategy({
-      authService: new MockLocalAuthService(),
-    })
+    const strategy = new LocalAuthStrategy(new MockLocalAuthService(), {})
 
     const username = 'Clark Kent'
     const password = 'iAmSuperman'

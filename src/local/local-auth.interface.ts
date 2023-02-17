@@ -6,7 +6,16 @@ export interface LocalAuthServiceBehaviour {
   handleLoginFor(user: any): Promise<any>
 }
 
+export type LocalAuthStrategyOptions =
+  | IStrategyOptions
+  | IStrategyOptionsWithRequest
+
+export interface LocalAuthServiceDefinition {
+  imports?: any[]
+  class: any
+}
+
 export interface LocalAuthModuleOptions {
-  strategyOptions?: IStrategyOptions | IStrategyOptionsWithRequest
-  authService: LocalAuthServiceBehaviour
+  strategyOptions: LocalAuthStrategyOptions
+  authServiceDefinition: LocalAuthServiceDefinition
 }

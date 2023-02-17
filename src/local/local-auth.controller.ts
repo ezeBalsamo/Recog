@@ -1,23 +1,18 @@
 import { Controller, Inject, Post, Request, UseGuards } from '@nestjs/common'
 import { LocalAuthGuard } from './local-auth.guard'
-import {
-  LocalAuthModuleOptions,
-  LocalAuthServiceBehaviour,
-} from './local-auth.interface'
-import { MODULE_OPTIONS_TOKEN } from './local-auth.module-definition'
+import { LocalAuthServiceBehaviour } from './local-auth.interface'
+import { LOCAL_AUTH_SERVICE } from './local-auth.constants'
+import { prefix, loginPath } from './local-auth.routes-resolver'
 
-@Controller()
+@Controller(prefix)
 export class LocalAuthController {
-  private authService: LocalAuthServiceBehaviour
   constructor(
-    @Inject(MODULE_OPTIONS_TOKEN)
-    private readonly options: LocalAuthModuleOptions,
-  ) {
-    this.authService = options.authService
-  }
+    @Inject(LOCAL_AUTH_SERVICE)
+    private readonly authService: LocalAuthServiceBehaviour,
+  ) {}
 
   @UseGuards(LocalAuthGuard)
-  @Post('login')
+  @Post(loginPath)
   async login(@Request() req) {
     return this.authService.handleLoginFor(req.user)
   }

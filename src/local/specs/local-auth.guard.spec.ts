@@ -5,24 +5,16 @@ import { LocalAuthStrategy } from '../local-auth.strategy'
 import { MockLocalAuthService } from './mock-local-auth.service'
 
 const injectStrategy = () =>
-  new LocalAuthStrategy({
-    authService: new MockLocalAuthService(),
-  })
+  new LocalAuthStrategy(new MockLocalAuthService(), {})
 
 const injectCustomizedUsernameStrategy = () =>
-  new LocalAuthStrategy({
-    strategyOptions: {
-      usernameField: 'mail',
-    },
-    authService: new MockLocalAuthService(),
+  new LocalAuthStrategy(new MockLocalAuthService(), {
+    usernameField: 'mail',
   })
 
 const injectCustomizedPasswordStrategy = () =>
-  new LocalAuthStrategy({
-    strategyOptions: {
-      passwordField: 'pass',
-    },
-    authService: new MockLocalAuthService(),
+  new LocalAuthStrategy(new MockLocalAuthService(), {
+    passwordField: 'pass',
   })
 
 describe('LocalAuthGuard', () => {
