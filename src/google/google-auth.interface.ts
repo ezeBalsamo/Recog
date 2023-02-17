@@ -14,3 +14,13 @@ export interface GoogleAuthStrategyOptions extends StrategyOptions {
   callbackURL: string
   scope: string | string[]
 }
+
+export interface GoogleAuthServiceDefinition {
+  imports?: any[]
+  class: any
+}
+
+export interface GoogleAuthModuleOptions {
+  strategyOptions: GoogleAuthStrategyOptions
+  authServiceDefinition: GoogleAuthServiceDefinition
+}
