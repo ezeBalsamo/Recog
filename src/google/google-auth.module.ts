@@ -4,7 +4,7 @@ import { PassportModule } from '@nestjs/passport'
 import { GoogleAuthStrategy } from './google-auth.strategy'
 import { GoogleAuthController } from './google-auth.controller'
 import config from 'recog-config'
-import { GOOGLE_AUTH_SERVICE_CLASS } from './google-auth.constants'
+import { GOOGLE_AUTH_SERVICE } from './google-auth.constants'
 
 const {
   google: { authServiceDefinition },
@@ -15,7 +15,7 @@ const {
   providers: [
     GoogleAuthStrategy,
     {
-      provide: GOOGLE_AUTH_SERVICE_CLASS,
+      provide: GOOGLE_AUTH_SERVICE,
       useClass: authServiceDefinition.class,
     },
   ],
