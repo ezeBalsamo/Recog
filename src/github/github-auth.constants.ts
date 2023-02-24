@@ -1,0 +1,1 @@
+export const GITHUB_AUTH_SERVICE = Symbol('GITHUB_AUTH_SERVICE')
