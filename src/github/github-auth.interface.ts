@@ -6,6 +6,4 @@ export interface GithubAuthServiceBehaviour {
     refreshToken: string,
     profile: Profile,
   ): Promise<any>
-
-  handleRedirectFor(user: any): Promise<any>
 }
