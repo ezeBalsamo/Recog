@@ -7,5 +7,5 @@ export interface GithubAuthServiceBehaviour {
     profile: Profile,
   ): Promise<any>
 
-  handleRedirectFor(user: any): Promise<any>
+  handleRedirectionFor(user: any): Promise<any>
 }

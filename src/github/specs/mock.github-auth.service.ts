@@ -14,7 +14,7 @@ export class MockGithubAuthService implements GithubAuthServiceBehaviour {
     })
   }
 
-  handleRedirectFor(user: any): Promise<any> {
+  handleRedirectionFor(user: any): Promise<any> {
     return Promise.resolve({ ...user, token: '1234' })
   }
 }
