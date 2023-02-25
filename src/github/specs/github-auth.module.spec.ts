@@ -28,4 +28,11 @@ describe('GithubAuthModule', () => {
       class: MockGithubAuthService,
     })
   })
+
+  it('can be registered with explicit auth service definition imports', async () => {
+    await assertCanInitialiseWhenAuthServiceDefinedBy({
+      imports: [],
+      class: MockGithubAuthService,
+    })
+  })
 })
