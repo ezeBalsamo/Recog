@@ -1,4 +1,4 @@
-import { Profile } from 'passport-github2'
+import { Profile, StrategyOptions } from 'passport-github2'
 
 export interface GithubAuthServiceBehaviour {
   handleLoginFor(
@@ -8,4 +8,14 @@ export interface GithubAuthServiceBehaviour {
   ): Promise<any>
 
   handleRedirectionFor(user: any): Promise<any>
+}
+
+export interface GithubAuthServiceDefinition {
+  imports?: any[]
+  class: any
+}
+
+export interface GithubAuthModuleOptions {
+  strategyOptions: StrategyOptions
+  authServiceDefinition: GithubAuthServiceDefinition
 }
