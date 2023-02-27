@@ -13,6 +13,7 @@ const assertCanInitialiseWhenAuthServiceDefinedBy = async (
           clientID: 'pennyworth1',
           clientSecret: 'Bruce Wayne is Batman',
           callbackURL: 'http://localhost:3000/auth/github/callback',
+          scope: ['email'],
         },
         authServiceDefinition,
       }),
