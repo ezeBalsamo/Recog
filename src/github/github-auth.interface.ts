@@ -10,12 +10,16 @@ export interface GithubAuthServiceBehaviour {
   handleRedirectionFor(user: any): Promise<any>
 }
 
+export interface GithubAuthStrategyOptions extends StrategyOptions {
+  scope: string[] | undefined
+}
+
 export interface GithubAuthServiceDefinition {
   imports?: any[]
   class: any
 }
 
 export interface GithubAuthModuleOptions {
-  strategyOptions: StrategyOptions
+  strategyOptions: GithubAuthStrategyOptions
   authServiceDefinition: GithubAuthServiceDefinition
 }
