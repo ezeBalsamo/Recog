@@ -3,7 +3,7 @@ import { GithubAuthServiceDefinition } from '../github-auth.interface'
 import { GithubAuthModule } from '../github-auth.module'
 import { Test } from '@nestjs/testing'
 
-const assertCanInitialiseWhenAuthServiceDefinedBy = async (
+const assertCanInitializeWhenAuthServiceDefinedBy = async (
   authServiceDefinition: GithubAuthServiceDefinition,
 ) => {
   const testingModule = await Test.createTestingModule({
@@ -24,13 +24,13 @@ const assertCanInitialiseWhenAuthServiceDefinedBy = async (
 
 describe('GithubAuthModule', () => {
   it('can be registered with implicit auth service definition imports', async () => {
-    await assertCanInitialiseWhenAuthServiceDefinedBy({
+    await assertCanInitializeWhenAuthServiceDefinedBy({
       class: MockGithubAuthService,
     })
   })
 
   it('can be registered with explicit auth service definition imports', async () => {
-    await assertCanInitialiseWhenAuthServiceDefinedBy({
+    await assertCanInitializeWhenAuthServiceDefinedBy({
       imports: [],
       class: MockGithubAuthService,
     })
