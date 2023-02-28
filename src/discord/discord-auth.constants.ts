@@ -1,0 +1,1 @@
+export const DISCORD_AUTH_SERVICE = Symbol('DISCORD_AUTH_SERVICE')
