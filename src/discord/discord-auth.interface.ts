@@ -25,4 +25,5 @@ export interface DiscordAuthServiceBehaviour {
 
 export interface DiscordAuthStrategyOptions extends StrategyOptions {
   callbackURL: string
+  scope: string | string[]
 }
