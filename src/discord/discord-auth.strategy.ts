@@ -7,6 +7,7 @@ import {
 import {
   DiscordAuthServiceBehaviour,
   DiscordAuthStrategyOptions,
+  DiscordProfile,
 } from './discord-auth.interface'
 import { Strategy } from 'passport-discord'
 
@@ -24,22 +25,7 @@ export class DiscordAuthStrategy extends PassportStrategy(Strategy) {
   async validate(
     accessToken: string,
     refreshToken: string,
-    profile: {
-      displayName: string
-      flags: number
-      verified: boolean
-      banner: string
-      fetchedAt: string
-      avatar: string
-      locale: string
-      discriminator: string
-      accent_color: number
-      provider: string
-      mfa_enabled: boolean
-      id: string
-      email: string
-      username: string
-    },
+    profile: DiscordProfile,
   ): Promise<any> {
     return this.authService.handleLoginFor(accessToken, refreshToken, profile)
   }
