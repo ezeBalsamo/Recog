@@ -29,3 +29,13 @@ export interface DiscordAuthStrategyOptions extends StrategyOptions {
   callbackURL: string
   scope: string | string[]
 }
+
+export interface DiscordAuthServiceDefinition {
+  imports?: any[]
+  class: any
+}
+
+export interface DiscordAuthModuleOptions {
+  strategyOptions: DiscordAuthStrategyOptions
+  authServiceDefinition: DiscordAuthServiceDefinition
+}
