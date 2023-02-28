@@ -29,4 +29,11 @@ describe('DiscordAuthModule', () => {
       class: MockDiscordAuthService,
     })
   })
+
+  it('can be registered with explicit auth service definition imports', async () => {
+    await assertCanInitializeWhenAuthServiceDefinedBy({
+      imports: [],
+      class: MockDiscordAuthService,
+    })
+  })
 })
