@@ -21,6 +21,8 @@ export interface DiscordAuthServiceBehaviour {
       username: string
     },
   ): Promise<any>
+
+  handleRedirectionFor(user: any): Promise<any>
 }
 
 export interface DiscordAuthStrategyOptions extends StrategyOptions {

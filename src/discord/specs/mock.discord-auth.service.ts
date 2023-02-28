@@ -27,4 +27,8 @@ export class MockDiscordAuthService implements DiscordAuthServiceBehaviour {
       superhero: true,
     })
   }
+
+  handleRedirectionFor(user: any): Promise<any> {
+    return Promise.resolve({ ...user, token: '1234' })
+  }
 }
